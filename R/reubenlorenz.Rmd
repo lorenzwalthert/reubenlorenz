@@ -1,0 +1,51 @@
+---
+title: "reubenlorenz"
+author: "Lorenz Walthert"
+date: "21. Juli 2016"
+output: html_document
+---
+# `ggplot2` 
+```{r}
+library("ggplot2")
+source("/Users/lorenz/Dropbox/Strathmore University/SEPU/2-code/4-r_code/r-project/sortlevel.R")
+mpg<-mpg
+ggplot(data = mpg) # ggplot(data = mpg) is the same as ggplot(mpg)
+
+# change the fill
+ggplot(data = mpg, aes(manufacturer)) + geom_bar(fill = "grey") + coord_flip()
+
+# flit the axis
+ggplot(data = mpg, aes(x = manufacturer)) + geom_bar() + coord_flip()
+
+# sort level
+ggplot(data = mpg, aes(x = sortlevel(manufacturer))) + geom_bar() + coord_flip()
+# factors v objects. The former has levels at the end of output
+
+# rename x axis
+ggplot(data = mpg, aes(x = sortlevel(manufacturer))) + 
+        geom_bar() + coord_flip() + 
+        scale_x_discrete(name = "Manufacturer") + scale_y_discrete(name = "")
+```
+
+# loops
+Loops are... 
+```{r}
+for (i in 1:13) {
+        print(i)
+}
+```
+
+# OLS 
+```{r}
+lm(formula = year ~ cty, data = mpg)
+getwd()
+```
+
+# import excel data
+```{r}
+library("xlsx")
+file<-"test.xlsx"
+setwd("/Users/lorenz/datasciencecoursera/R Programming assignments")
+raw<-read.xlsx(file, sheetIndex = 1)
+raw<-read.table("/Users/lorenz/datasciencecoursera/R Programming assignments/e.csv", se = ";")
+```
